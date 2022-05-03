@@ -11,16 +11,19 @@ const _scanSite = async (browser, url) => {
     waitUntil: 'networkidle2'
   })
   const productNames = await _getAllProductNames(page)
-  console.log(productNames)
   return productNames
 }
 
 module.exports = async () => {
   const browser = await puppeteer.launch()
+  const products = {}
   console.log('---- Scanning US site ----')
-  await _scanSite(browser, config.sites.us)
+  const usProducts = await _scanSite(browser, config.sites.us)
+  products.us = usProducts
   console.log('---- Scanning CA site ----')
-  await _scanSite(browser, config.sites.ca)
+  const caProducts = await _scanSite(browser, config.sites.ca)
+  products.ca = caProducts
   await browser.close()
+  return products
 }
 
