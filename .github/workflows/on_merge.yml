@@ -1,0 +1,22 @@
+name: 'Code merge'
+
+on:
+  push:
+    branches: [ 'main' ]
+
+jobs:
+  Deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Auth with google cloud
+        id: "auth"
+        uses: "google-github-actions/auth@v0"
+        with:
+          credentials_json: "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}"
+      - name: Set up Cloud SDK
+        uses: "google-github-actions/setup-gcloud@v0"
+      - name: Install gloud beta
+        run: "gcloud components install beta"
+      - name: "Deploy cloud function"
+        run: "gcloud beta functions deploy web-scraper --gen2 --service-account cloud-function-deployer@web-scraper-349106.iam.gserviceaccount.com --runtime nodejs14 --entry-point webScraper --source . --trigger-topic start_web_scraper_job --region us-west1"
