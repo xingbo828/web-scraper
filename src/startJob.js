@@ -2,7 +2,8 @@ const puppeteer = require('puppeteer')
 const config = require('./config')
 
 const _getAllProductNames = async (page) => {
-  return await page.$$eval('h4.product-item-name', (items) => items.map(item => item.textContent))
+  const p = await page.$$eval('h4.product-item-name', (items) => items.map(item => item.textContent))
+  return p
 }
 
 const _scanSite = async (browser, url) => {
