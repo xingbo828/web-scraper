@@ -7,7 +7,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/localRun.js"
+    "start": "npx @google-cloud/functions-framework --target=webScraper --port 3000"
   },
   "author": "",
   "license": "ISC",
