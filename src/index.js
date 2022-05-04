@@ -15,13 +15,13 @@ functions.http('hermesScraper', async (req, res) => {
     const twilioAccount = JSON.parse(twilioAccountStr)
     const twilioClient = twilio(twilioAccount.SID, twilioAccount.TOKEN)
     const browser = await puppeteer.launch()
-    // Scan US site
-    const usProducts = await getProducts(browser, config.sites.us)
-    console.info('US products:', usProducts)
-    await processUsers(JSON.parse(users), usProducts, sendNotification(twilioClient, 'US'))
+
+    // const usProducts = await getProducts(browser, config.sites.us)
+    // console.info('US products:', usProducts)
+    // await processUsers(JSON.parse(users), usProducts, sendNotification(twilioClient, 'US'))
 
     const caProducts = await getProducts(browser, config.sites.ca)
-    console.info('CA products:', caProducts)
+    console.info('CA products:', JSON.stringify(caProducts))
     await processUsers(JSON.parse(users), caProducts, sendNotification(twilioClient, 'CA'))
     await browser.close()
     res.send('ok')
