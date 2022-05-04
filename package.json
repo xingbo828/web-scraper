@@ -7,13 +7,15 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "npx @google-cloud/functions-framework --target=webScraper --port 3000"
+    "start": "npx @google-cloud/functions-framework --target=hermesScraper --port 3000",
+    "test": "jest --config .jest.json  --runInBand --forceExit --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@google-cloud/functions-framework": "^3.0.0",
     "@google-cloud/secret-manager": "^3.11.0",
-    "puppeteer": "^13.7.0"
+    "puppeteer": "^13.7.0",
+    "twilio": "^3.76.1"
   }
 }
