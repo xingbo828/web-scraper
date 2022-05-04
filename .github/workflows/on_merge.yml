@@ -19,4 +19,4 @@ jobs:
       - name: Install gloud beta
         run: "gcloud components install beta"
       - name: "Deploy cloud function"
-        run: "gcloud beta functions deploy web-scraper --gen2 --allow-unauthenticated --service-account cloud-function-deployer@web-scraper-349106.iam.gserviceaccount.com --runtime nodejs14 --trigger-http --entry-point webScraper --source .  --region us-west1"
+        run: "gcloud beta functions deploy web-scraper --gen2 --memory 512MB --allow-unauthenticated --service-account cloud-function-deployer@web-scraper-349106.iam.gserviceaccount.com --runtime nodejs14 --trigger-http --entry-point webScraper --source .  --region us-west1"
